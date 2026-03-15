@@ -8,12 +8,16 @@
 </head>
 <body>
 
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div id="particles"></div>
+
   <nav>
     <a href="#" class="nav-logo">VOEKK</a>
     <ul class="nav-links">
       <li><a href="#posts">Blog</a></li>
-      <li><a href="#sobre">Sobre mí</a></li>
-      <li><button id="boton-modo" onclick="toggleModo()">☀ Claro</button></li>
+      <li><a href="#sobre">Sobre mi</a></li>
+      <li><button id="boton-modo" onclick="toggleModo()">Claro</button></li>
     </ul>
   </nav>
 
@@ -21,44 +25,44 @@
     <div class="hero-content">
       <span class="hero-tag">Disponible para nuevos proyectos</span>
       <h1>Hola, soy <span>Voekk</span></h1>
-      <p class="hero-sub">Desarrollador & Creador</p>
-      <p class="hero-desc">Escribo sobre tecnología, proyectos personales y todo lo que me resulta interesante. Este es mi espacio en internet.</p>
+      <p class="hero-sub typing" id="typing"></p>
+      <p class="hero-desc">Escribo sobre tecnologia, proyectos personales y todo lo que me resulta interesante. Este es mi espacio en internet.</p>
       <div class="hero-btns">
         <a href="#posts" class="btn-primary">Ver el blog</a>
-        <a href="#sobre" class="btn-secondary">Sobre mí</a>
+        <a href="#sobre" class="btn-secondary">Sobre mi</a>
       </div>
     </div>
   </section>
 
   <section id="posts">
     <p class="section-label">Escritos</p>
-    <h2 class="section-title">Últimas entradas</h2>
+    <h2 class="section-title">Ultimas entradas</h2>
     <div class="posts-grid">
       <a href="#" class="post-card">
         <p class="post-date">15 marzo 2026</p>
-        <h3>Cómo construí este blog desde cero</h3>
+        <h3>Como construi este blog desde cero</h3>
         <p>Desde un Windows 7 con Git hasta GitHub Pages. El proceso completo.</p>
       </a>
       <a href="#" class="post-card">
-        <p class="post-date">Próximamente</p>
+        <p class="post-date">Proximamente</p>
         <h3>Montando un servidor con Raspberry Pi</h3>
         <p>Mi plan para tener servidor propio en casa con control total.</p>
       </a>
       <a href="#" class="post-card">
-        <p class="post-date">Próximamente</p>
+        <p class="post-date">Proximamente</p>
         <h3>Crimen y Castigo — Notas de lectura</h3>
-        <p>Reflexiones sobre Dostoievski y por qué sigue siendo relevante.</p>
+        <p>Reflexiones sobre Dostoievski y por que sigue siendo relevante.</p>
       </a>
     </div>
   </section>
 
   <section id="sobre">
-    <p class="section-label">Sobre mí</p>
-    <h2 class="section-title">¿Quién soy?</h2>
+    <p class="section-label">Sobre mi</p>
+    <h2 class="section-title">Quien soy?</h2>
     <div class="sobre-grid">
       <div class="sobre-text">
-        <p>Soy Voekk, vivo en Salto del Guairá, Paraguay. Me interesa la tecnología, el desarrollo web y construir cosas desde cero.</p>
-        <p>Este blog es mi espacio para documentar proyectos, compartir lo que aprendo y escribir sobre lo que me llama la atención.</p>
+        <p>Soy Voekk, vivo en Salto del Guaira, Paraguay. Me interesa la tecnologia, el desarrollo web y construir cosas desde cero.</p>
+        <p>Este blog es mi espacio para documentar proyectos, compartir lo que aprendo y escribir sobre lo que me llama la atencion.</p>
       </div>
       <div class="sobre-stats">
         <div class="stat-box">
@@ -66,12 +70,12 @@
           <div class="stat-label">Blog online</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">∞</div>
+          <div class="stat-num">inf</div>
           <div class="stat-label">Por aprender</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">Pi</div>
-          <div class="stat-label">Servidor próximamente</div>
+          <div class="stat-label">Servidor proximamente</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">PY</div>
@@ -83,18 +87,63 @@
 
   <footer>
     <span class="footer-logo">VOEKK</span>
-    <p>Hecho a mano — 2026</p>
+    <p>Hecho a mano 2026</p>
   </footer>
 
   <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX - 5 + 'px';
+      cursor.style.top  = e.clientY - 5 + 'px';
+      ring.style.left   = e.clientX - 18 + 'px';
+      ring.style.top    = e.clientY - 18 + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.style.transform = 'scale(1.8)');
+      el.addEventListener('mouseleave', () => ring.style.transform = 'scale(1)');
+    });
+
+    // MODO
     function toggleModo() {
       document.body.classList.toggle('claro');
-      const boton = document.getElementById('boton-modo');
-      if (document.body.classList.contains('claro')) {
-        boton.textContent = '☾ Oscuro';
+      const b = document.getElementById('boton-modo');
+      b.textContent = document.body.classList.contains('claro') ? 'Oscuro' : 'Claro';
+    }
+
+    // TYPING
+    const frases = [
+      'Desarrollador & Creador',
+      'Aprendiendo cada dia',
+      'Construyendo desde cero',
+      'Salto del Guaira, Paraguay'
+    ];
+    let fi = 0, ci = 0, borrando = false;
+    const el = document.getElementById('typing');
+    function type() {
+      const frase = frases[fi];
+      if (!borrando) {
+        el.textContent = frase.slice(0, ++ci);
+        if (ci === frase.length) { borrando = true; setTimeout(type, 1800); return; }
       } else {
-        boton.textContent = '☀ Claro';
+        el.textContent = frase.slice(0, --ci);
+        if (ci === 0) { borrando = false; fi = (fi + 1) % frases.length; }
       }
+      setTimeout(type, borrando ? 40 : 80);
+    }
+    setTimeout(type, 1200);
+
+    // PARTICULAS
+    const cont = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay    = (Math.random() * 10) + 's';
+      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+      cont.appendChild(p);
     }
   </script>
 
