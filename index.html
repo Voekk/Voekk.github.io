@@ -1,30 +1,89 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voekk � Blog</title>
+  <title>Voekk — Blog</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <div>
-      <h1>Voekk</h1>
-      <p>Blog personal</p>
-    </div>
-    <button id="boton-modo" onclick="toggleModo()">? Claro</button>
-  </header>
+  <nav>
+    <a href="#" class="nav-logo">VOEKK</a>
+    <ul class="nav-links">
+      <li><a href="#posts">Blog</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><button id="boton-modo" onclick="toggleModo()">☀ Claro</button></li>
+    </ul>
+  </nav>
 
-  <main>
-    <article>
-      <h2>Bienvenido</h2>
-      <p>BLOG.</p>
-    </article>
-  </main>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">Disponible para nuevos proyectos</span>
+      <h1>Hola, soy <span>Voekk</span></h1>
+      <p class="hero-sub">Desarrollador & Creador</p>
+      <p class="hero-desc">Escribo sobre tecnología, proyectos personales y todo lo que me resulta interesante. Este es mi espacio en internet.</p>
+      <div class="hero-btns">
+        <a href="#posts" class="btn-primary">Ver el blog</a>
+        <a href="#sobre" class="btn-secondary">Sobre mí</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <p class="section-label">Escritos</p>
+    <h2 class="section-title">Últimas entradas</h2>
+    <div class="posts-grid">
+      <a href="#" class="post-card">
+        <p class="post-date">15 marzo 2026</p>
+        <h3>Cómo construí este blog desde cero</h3>
+        <p>Desde un Windows 7 con Git hasta GitHub Pages. El proceso completo.</p>
+      </a>
+      <a href="#" class="post-card">
+        <p class="post-date">Próximamente</p>
+        <h3>Montando un servidor con Raspberry Pi</h3>
+        <p>Mi plan para tener servidor propio en casa con control total.</p>
+      </a>
+      <a href="#" class="post-card">
+        <p class="post-date">Próximamente</p>
+        <h3>Crimen y Castigo — Notas de lectura</h3>
+        <p>Reflexiones sobre Dostoievski y por qué sigue siendo relevante.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <p class="section-label">Sobre mí</p>
+    <h2 class="section-title">¿Quién soy?</h2>
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <p>Soy Voekk, vivo en Salto del Guairá, Paraguay. Me interesa la tecnología, el desarrollo web y construir cosas desde cero.</p>
+        <p>Este blog es mi espacio para documentar proyectos, compartir lo que aprendo y escribir sobre lo que me llama la atención.</p>
+      </div>
+      <div class="sobre-stats">
+        <div class="stat-box">
+          <div class="stat-num">01</div>
+          <div class="stat-label">Blog online</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Por aprender</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">Pi</div>
+          <div class="stat-label">Servidor próximamente</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">PY</div>
+          <div class="stat-label">Paraguay</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>BrawlStars es Mierda</p>
+    <span class="footer-logo">VOEKK</span>
+    <p>Hecho a mano — 2026</p>
   </footer>
 
   <script>
@@ -32,9 +91,9 @@
       document.body.classList.toggle('claro');
       const boton = document.getElementById('boton-modo');
       if (document.body.classList.contains('claro')) {
-        boton.textContent = '? Oscuro';
+        boton.textContent = '☾ Oscuro';
       } else {
-        boton.textContent = '? Claro';
+        boton.textContent = '☀ Claro';
       }
     }
   </script>
